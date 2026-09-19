@@ -122,7 +122,7 @@ if (token) {
   fetch(GAS_URL + "?t=" + encodeURIComponent(token))
     .then(response => response.json())
     .then(data => {
-      console.log("取得した名前:", data.name);
+      console.log("GASから取得したデータ:", data);
     })
     .catch(error => {
       console.error("名前取得エラー:", error);
