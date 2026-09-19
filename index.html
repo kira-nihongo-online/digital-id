@@ -119,14 +119,18 @@ const token = params.get("t");
 
 if (token) {
 
-  fetch(GAS_URL + "?t=" + encodeURIComponent(token))
-    .then(response => response.json())
-    .then(data => {
-      console.log("GASから取得したデータ:", data);
-    })
-    .catch(error => {
-      console.error("名前取得エラー:", error);
-    });
+  const script = document.createElement("script");
+
+  script.src =
+    GAS_URL +
+    "?t=" + encodeURIComponent(token) +
+    "&callback=gasCallback";
+
+  window.gasCallback = function(data) {
+    console.log("GASから取得したデータ:", data);
+  };
+
+  document.body.appendChild(script);
 
 }
 
