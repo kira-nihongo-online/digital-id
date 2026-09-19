@@ -110,5 +110,27 @@ html,body{
 
 </div>
 
+<script>
+
+const GAS_URL = "https://script.google.com/macros/s/AKfycbx0plBzgefYllqu8X_eP0mYzr2L3Cs_uJYt0fiEPgeP3pQffuZUQEQP4A6jNZ9lhM7Q/exec";
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("t");
+
+if (token) {
+
+  fetch(GAS_URL + "?t=" + encodeURIComponent(token))
+    .then(response => response.json())
+    .then(data => {
+      console.log("取得した名前:", data.name);
+    })
+    .catch(error => {
+      console.error("名前取得エラー:", error);
+    });
+
+}
+
+</script>
+
 </body>
 </html>
