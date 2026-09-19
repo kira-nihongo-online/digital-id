@@ -150,22 +150,31 @@ if (token) {
    }
 
    nameElement.style.left = "50%";
-
    nameElement.style.transform = "translateX(-50%)";
-
    nameElement.style.color = "white";
-
    nameElement.style.fontSize = "20px";
-
    nameElement.style.fontWeight = "bold";
-
    nameElement.style.textAlign = "center";
-
    nameElement.style.lineHeight = "1.25";
-
    nameElement.style.whiteSpace = "nowrap";
-
    nameElement.style.zIndex = "10";
+
+   const photoElement = document.createElement("img");
+
+   photoElement.src = data.photoUrl;
+
+   photoElement.style.position = "fixed";
+   photoElement.style.top = "36%";
+   photoElement.style.left = "50%";
+   photoElement.style.transform = "translateX(-50%)";
+
+   photoElement.style.width = "150px";
+   photoElement.style.height = "180px";
+   photoElement.style.objectFit = "contain";
+
+   photoElement.style.zIndex = "10";
+
+   document.body.appendChild(photoElement);
 
     document.body.appendChild(nameElement);
   };
