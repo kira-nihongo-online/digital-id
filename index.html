@@ -128,6 +128,23 @@ if (token) {
 
   window.gasCallback = function(data) {
     console.log("GASから取得したデータ:", data);
+
+    // 名前表示
+    const nameElement = document.createElement("div");
+
+    nameElement.textContent = data.name;
+
+    nameElement.style.position = "absolute";
+    nameElement.style.top = "28%";
+    nameElement.style.left = "50%";
+    nameElement.style.transform = "translateX(-50%)";
+    nameElement.style.color = "white";
+    nameElement.style.fontSize = "28px";
+    nameElement.style.fontWeight = "bold";
+    nameElement.style.textAlign = "center";
+    nameElement.style.zIndex = "10";
+
+    document.body.appendChild(nameElement);
   };
 
   document.body.appendChild(script);
