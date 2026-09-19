@@ -3,14 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+}
+
+/* PC・タブレット */
+.digital-id{
+  display:block;
+  width:100%;
+  max-width:1000px;
+  height:auto;
+  margin:0 auto;
+}
+
+/* スマホ */
+@media screen and (max-width:600px){
+  .digital-id{
+    width:100%;
+    max-width:none;
+  }
+}
+
+</style>
 </head>
 
-<body style="margin:0; padding:0;">
+<body>
 
-<img
-  src="./Digital-ID.png"
-  style="display:block; width:100%; height:auto;"
->
+<img class="digital-id" src="./Digital-ID.png">
 
 </body>
 </html>
