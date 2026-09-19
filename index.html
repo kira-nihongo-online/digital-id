@@ -71,7 +71,7 @@ html,body{
     ลงทะเบียนเข้าเรียน
   </a>
 
-  <a href="<?= gradeUrl ?>" target="_blank" style="
+  <a id="gradeButton" href="#" target="_blank" style="
     display:flex;
     align-items:center;
     justify-content:center;
@@ -177,6 +177,8 @@ if (token) {
    document.body.appendChild(photoElement);
 
    document.getElementById("attendanceButton").href = data.attendanceUrl;
+
+   document.getElementById("gradeButton").href = data.gradeUrl;
 
     document.body.appendChild(nameElement);
   };
