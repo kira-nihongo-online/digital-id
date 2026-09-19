@@ -51,7 +51,7 @@ html,body{
   gap:16px;
 ">
 
-  <a href="<?= attendanceUrl ?>" target="_blank" style="
+  <a id="attendanceButton" href="#" target="_blank" style="
     display:flex;
     align-items:center;
     justify-content:center;
@@ -175,6 +175,8 @@ if (token) {
    photoElement.style.zIndex = "10";
 
    document.body.appendChild(photoElement);
+
+   document.getElementById("attendanceButton").href = data.attendanceUrl;
 
     document.body.appendChild(nameElement);
   };
