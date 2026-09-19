@@ -9,98 +9,102 @@
 html,body{
   margin:0;
   padding:0;
-  width:100vw;
-  height:100vh;
+  width:100%;
+  height:100%;
   overflow:hidden;
   font-family:sans-serif;
 }
 
-/* カード */
 .card{
   position:relative;
-  width:100vw;
-  height:100vh;
+  width:100%;
+  height:100%;
+  overflow:hidden;
 }
 
 /* 背景 */
+
 .bg{
   position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
 /* 写真 */
+
 .photo{
   position:absolute;
-  top:32vh;
+  top:24%;
   left:50%;
   transform:translateX(-50%);
-  width:148px;
-  height:220px;
-
-  border-radius:0px;   /* ←ここ変更（0でもOK） */
-  object-fit:contain;   /* そのまま */
+  width:150px;
+  height:180px;
+  object-fit:contain;
 }
 
-/* 名前共通 */
+/* 名前 */
+
 .name-jp,
 .name-th{
   position:absolute;
+  left:0;
   width:100%;
   text-align:center;
   color:white;
   text-shadow:0 3px 8px rgba(0,0,0,0.7);
 }
 
-/* 日本語 */
 .name-jp{
-  top:52vh;
-  font-size:60px;
+  top:48%;
+  font-size:42px;
   font-weight:bold;
 }
 
-/* タイ語 */
 .name-th{
-  top:57vh;
-  font-size:60px;
+  top:54%;
+  font-size:36px;
 }
 
-
-/* ======================
-ボタンエリア
-====================== */
+/* ボタン */
 
 .buttons{
   position:absolute;
-  top:65vh;
+  top:67%;
   left:0;
   width:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:16px;
+  gap:14px;
 }
-
-/* ボタン */
 
 .btn{
   display:flex;
   align-items:center;
   justify-content:center;
+
   width:260px;
-  height:48px;
+  height:46px;
   box-sizing:border-box;
-  padding:0 12px;
+
+  padding:0 10px;
+
   background:white;
   color:#333;
+
   font-size:19px;
   font-weight:bold;
-  line-height:1.2;
+  line-height:1.1;
+
   border-radius:24px;
+
   text-align:center;
   text-decoration:none;
+
   box-shadow:0 4px 10px rgba(0,0,0,0.35);
+
   cursor:pointer;
 }
 
@@ -116,7 +120,6 @@ html,body{
 
 <div class="name-jp"><?= name ?></div>
 <div class="name-th"><?= nameTh ?></div>
-
 
 <div class="buttons">
 
@@ -134,9 +137,7 @@ html,body{
 
 </div>
 
-
 </div>
-
 
 <script>
 
