@@ -36,12 +36,11 @@ html,body{
   top:32vh;
   left:50%;
   transform:translateX(-50%);
-  width:148px;
-  height:220px;
+  width:290px;
+  height:300px;
 
-  border-radius:0px;
-  object-fit:contain;
-  visibility:hidden;
+  border-radius:0px;   /* ←ここ変更（0でもOK） */
+  object-fit:contain;   /* そのまま */
 }
 
 /* 名前共通 */
@@ -57,14 +56,14 @@ html,body{
 /* 日本語 */
 .name-jp{
   top:52vh;
-  font-size:36px;
+  font-size:60px;
   font-weight:bold;
 }
 
 /* タイ語 */
 .name-th{
   top:57vh;
-  font-size:36px;
+  font-size:60px;
 }
 
 
@@ -85,16 +84,15 @@ html,body{
 /* ボタン */
 
 .btn{
-  width:280px;
-  max-width:80vw;
-  padding:14px 0;
+  width:80vw;        /* 大きく */
+  max-width:380px;
+  padding:22px 0;    /* 高さ大きく */
   background:white;
   color:#333;
-  font-size:22px;
+  font-size:34px;    /* 文字大きく */
   font-weight:bold;
   border-radius:45px;
   text-align:center;
-  white-space:nowrap;
   box-shadow:0 4px 12px rgba(0,0,0,0.4);
   cursor:pointer;
 }
@@ -106,31 +104,16 @@ html,body{
 
 <div class="card">
 
-<img class="bg" src="./Digital-ID.png">
-<div class="card">
+<img class="bg" src="<?= bgUrl ?>">
+<img class="photo" src="<?= photoUrl ?>">
 
-<img class="bg" src="./Digital-ID.png">
+<div class="name-jp"><?= name ?></div>
+<div class="name-th"><?= nameTh ?></div>
 
-<div class="name-jp">CHONKANYANUKOON</div>
-<div class="name-th">KUNIHIKO CLASS DIGITAL ID</div>
 
 <div class="buttons">
 
-<a class="btn" href="#" >
-ลงทะเบียนเข้าเรียน
-</a>
-
-<a class="btn" href="#" >
-ตรวจสอบงาน
-</a>
-
-<a class="btn" href="https://line.me/ti/p/TGjskAtP62" target="_blank">
-ติดต่อครู (LINE)
-</a>
-
-</div>
-
-</div>
+<a class="btn" href="<?= attendanceUrl ?>" target="_blank">
 ลงทะเบียนเข้าเรียน
 </a>
 
