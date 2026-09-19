@@ -73,27 +73,34 @@ html,body{
 
 .buttons{
   position:absolute;
-  top:64vh;
+  top:65vh;
+  left:0;
   width:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:18px;
+  gap:16px;
 }
 
 /* ボタン */
 
 .btn{
-  width:60vw;
-  max-width:280px;
-  padding:12px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:260px;
+  height:48px;
+  box-sizing:border-box;
+  padding:0 12px;
   background:white;
   color:#333;
-  font-size:22px;
+  font-size:19px;
   font-weight:bold;
-  border-radius:45px;
+  line-height:1.2;
+  border-radius:24px;
   text-align:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,0.35);
   cursor:pointer;
 }
 
