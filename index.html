@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style>
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  font-family:sans-serif;
+}
+
+/* カード */
+.card{
+  position:relative;
+  width:100vw;
+  height:100vh;
+}
+
+/* 背景 */
+.bg{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* 写真 */
+.photo{
+  position:absolute;
+  top:32vh;
+  left:50%;
+  transform:translateX(-50%);
+  width:148px;
+  height:220px;
+
+  border-radius:0px;
+  object-fit:contain;
+  visibility:hidden;
+}
+
+/* 名前共通 */
+.name-jp,
+.name-th{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  color:white;
+  text-shadow:0 3px 8px rgba(0,0,0,0.7);
+}
+
+/* 日本語 */
+.name-jp{
+  top:52vh;
+  font-size:36px;
+  font-weight:bold;
+}
+
+/* タイ語 */
+.name-th{
+  top:57vh;
+  font-size:36px;
+}
+
+
+/* ======================
+ボタンエリア
+====================== */
+
+.buttons{
+  position:absolute;
+  bottom:14vh;   /* 上へ移動 */
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:30px;      /* 間隔広げた */
+}
+
+/* ボタン */
+
+.btn{
+  width:280px;
+  max-width:80vw;
+  padding:14px 0;
+  background:white;
+  color:#333;
+  font-size:22px;
+  font-weight:bold;
+  border-radius:45px;
+  text-align:center;
+  white-space:nowrap;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img class="bg" src="./Digital-ID.png">
+<div class="card">
+
+<img class="bg" src="./Digital-ID.png">
+
+<div class="name-jp">CHONKANYANUKOON</div>
+<div class="name-th">KUNIHIKO CLASS DIGITAL ID</div>
+
+<div class="buttons">
+
+<a class="btn" href="#" >
+ลงทะเบียนเข้าเรียน
+</a>
+
+<a class="btn" href="#" >
+ตรวจสอบงาน
+</a>
+
+<a class="btn" href="https://line.me/ti/p/TGjskAtP62" target="_blank">
+ติดต่อครู (LINE)
+</a>
+
+</div>
+
+</div>
+ลงทะเบียนเข้าเรียน
+</a>
+
+<a class="btn" href="<?= gradeUrl ?>" target="_blank">
+ตรวจสอบงาน
+</a>
+
+<a class="btn" href="https://line.me/ti/p/TGjskAtP62" target="_blank">
+ติดต่อครู (LINE)
+</a>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function openAttendance(){
+  window.open("https://example.com")
+}
+
+function openGrades(){
+  window.open("https://example.com")
+}
+
+function openNews(){
+  window.open("https://example.com")
+}
+
+</script>
+
+</body>
+</html>
