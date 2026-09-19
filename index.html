@@ -129,19 +129,25 @@ if (token) {
   window.gasCallback = function(data) {
     console.log("GASから取得したデータ:", data);
 
-    // 名前表示
     const nameElement = document.createElement("div");
 
-    nameElement.textContent = data.name;
+    const nameParts = data.name.split(" ");
+
+    const line1 = nameParts[0] || "";
+    const line2 = nameParts.slice(1).join(" ") || "";
+
+    nameElement.innerHTML = line1 + "<br>" + line2;
 
     nameElement.style.position = "absolute";
-    nameElement.style.top = "28%";
+    nameElement.style.top = "31%";
     nameElement.style.left = "50%";
     nameElement.style.transform = "translateX(-50%)";
     nameElement.style.color = "white";
     nameElement.style.fontSize = "28px";
     nameElement.style.fontWeight = "bold";
     nameElement.style.textAlign = "center";
+    nameElement.style.lineHeight = "1.25";
+    nameElement.style.whiteSpace = "nowrap";
     nameElement.style.zIndex = "10";
 
     document.body.appendChild(nameElement);
