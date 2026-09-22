@@ -58,13 +58,6 @@ if (!token) {
 
 } else {
 
-  const script = document.createElement("script");
-
-  script.src =
-    GAS_URL +
-    "?t=" + encodeURIComponent(token) +
-    "&callback=testCallback";
-
   window.testCallback = function(data) {
 
     const gasEnd = performance.now();
@@ -72,34 +65,21 @@ if (!token) {
     document.getElementById("status").textContent =
       "GAS取得完了";
 
-    window.testCallback = function(data) {
-
-      const gasEnd = performance.now();
-
-      document.getElementById("status").textContent =
-        "GAS取得完了";
-
-      document.getElementById("result").textContent =
-        "GAS取得時間: " +
-        ((gasEnd - start) / 1000).toFixed(2) +
-        " 秒\n\n" +
-        "GASから返ってきたデータ:\n" +
-        JSON.stringify(data, null, 2);
-
-    };
-
+    document.getElementById("result").textContent =
       "GAS取得時間: " +
       ((gasEnd - start) / 1000).toFixed(2) +
       " 秒\n\n" +
-      "名前: " + data.name +
-      "\n" +
-      "写真URL: " + (data.photoUrl ? "取得あり" : "なし") +
-      "\n" +
-      "出席URL: " + (data.attendanceUrl ? "取得あり" : "なし") +
-      "\n" +
-      "課題URL: " + (data.gradeUrl ? "取得あり" : "なし");
+      "GASから返ってきたデータ:\n" +
+      JSON.stringify(data, null, 2);
 
   };
+
+  const script = document.createElement("script");
+
+  script.src =
+    GAS_URL +
+    "?t=" + encodeURIComponent(token) +
+    "&callback=testCallback";
 
   document.body.appendChild(script);
 
