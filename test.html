@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Digital ID TEST</title>
+<title>Digital ID TEST - Preload</title>
 
 <style>
 html,body{
@@ -33,13 +33,60 @@ html,body{
   text-align:center;
   white-space:pre-line;
 }
+
+#card{
+  display:none;
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+#card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+#name{
+  position:absolute;
+  top:56%;
+  left:50%;
+  transform:translateX(-50%);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+  line-height:1.25;
+  white-space:nowrap;
+}
+
+#photo{
+  position:absolute;
+  top:31%;
+  left:50%;
+  transform:translateX(-50%);
+  width:97px;
+  height:127px;
+  object-fit:contain;
+}
 </style>
 </head>
 
 <body>
 
-<div id="status">取得開始…</div>
+<div id="status">情報を先に取得しています…</div>
+
 <div id="result"></div>
+
+<div id="card">
+
+  <img src="./Digital-ID.png">
+
+  <img id="photo">
+
+  <div id="name"></div>
+
+</div>
 
 <script>
 
@@ -62,18 +109,77 @@ if (!token) {
 
     const gasEnd = performance.now();
 
-    document.getElementById("status").textContent =
-      "GAS取得完了";
+    if (data.error) {
 
-    document.getElementById("result").textContent =
-      "GAS取得時間: " +
-      ((gasEnd - start) / 1000).toFixed(2) +
-      " 秒\n\n" +
-      "GASから返ってきたデータ:\n" +
-      JSON.stringify(data, null, 2);
+      document.getElementById("status").textContent =
+        "取得エラー";
+
+      document.getElementById("result").textContent =
+        JSON.stringify(data, null, 2);
+
+      return;
+    }
+
+    // =========================
+    // 情報を全部受け取ってから準備
+    // =========================
+
+    const nameParts = String(data.name || "").split(" ");
+
+    const line1 = nameParts[0] || "";
+    const line2 = nameParts.slice(1).join(" ") || "";
+
+    document.getElementById("name").innerHTML =
+      line1 + "<br>" + line2;
+
+    // 写真を先に読み込む
+    const photo = document.getElementById("photo");
+
+    photo.onload = function() {
+
+      const completeTime = performance.now();
+
+      // 全部揃ってからカード表示
+      document.getElementById("status").style.display = "none";
+
+      document.getElementById("card").style.display = "block";
+
+      // 計測結果
+      document.getElementById("result").textContent =
+        "GAS取得時間: " +
+        ((gasEnd - start) / 1000).toFixed(2) +
+        " 秒\n\n" +
+        "カード表示準備完了: " +
+        ((completeTime - start) / 1000).toFixed(2) +
+        " 秒";
+
+      document.getElementById("result").style.position = "fixed";
+      document.getElementById("result").style.bottom = "10px";
+      document.getElementById("result").style.left = "10px";
+      document.getElementById("result").style.margin = "0";
+      document.getElementById("result").style.padding = "8px";
+      document.getElementById("result").style.background = "rgba(255,255,255,.8)";
+      document.getElementById("result").style.zIndex = "20";
+
+    };
+
+    photo.onerror = function() {
+
+      document.getElementById("status").textContent =
+        "写真の読み込みに失敗しました。";
+
+      document.getElementById("result").textContent =
+        "GAS取得時間: " +
+        ((gasEnd - start) / 1000).toFixed(2) +
+        " 秒";
+
+    };
+
+    photo.src = data.photoUrl;
 
   };
 
+  // ★ URLを開いた瞬間にGAS取得開始
   const script = document.createElement("script");
 
   script.src =
@@ -81,7 +187,7 @@ if (!token) {
     "?t=" + encodeURIComponent(token) +
     "&callback=testCallback";
 
-  document.body.appendChild(script);
+  document.head.appendChild(script);
 
 }
 
