@@ -72,7 +72,22 @@ if (!token) {
     document.getElementById("status").textContent =
       "GAS取得完了";
 
-    document.getElementById("result").textContent =
+    window.testCallback = function(data) {
+
+      const gasEnd = performance.now();
+
+      document.getElementById("status").textContent =
+        "GAS取得完了";
+
+      document.getElementById("result").textContent =
+        "GAS取得時間: " +
+        ((gasEnd - start) / 1000).toFixed(2) +
+        " 秒\n\n" +
+        "GASから返ってきたデータ:\n" +
+        JSON.stringify(data, null, 2);
+
+    };
+
       "GAS取得時間: " +
       ((gasEnd - start) / 1000).toFixed(2) +
       " 秒\n\n" +
