@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital ID TEST</title>
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  background:#eee;
+  font-family:sans-serif;
+}
+
+#status{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  padding:15px 20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  z-index:100;
+}
+
+#result{
+  margin-top:100px;
+  padding:20px;
+  text-align:center;
+  white-space:pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<div id="status">取得開始…</div>
+<div id="result"></div>
+
+<script>
+
+const GAS_URL =
+"https://script.google.com/macros/s/AKfycbx0plBzgefYllqu8X_eP0mYzr2L3Cs_uJYt0fiEPgeP3pQffuZUQEQP4A6jNZ9lhM7Q/exec";
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("t");
+
+const start = performance.now();
+
+if (!token) {
+
+  document.getElementById("status").textContent =
+    "テストURLに ?t=トークン を付けてください。";
+
+} else {
+
+  const script = document.createElement("script");
+
+  script.src =
+    GAS_URL +
+    "?t=" + encodeURIComponent(token) +
+    "&callback=testCallback";
+
+  window.testCallback = function(data) {
+
+    const gasEnd = performance.now();
+
+    document.getElementById("status").textContent =
+      "GAS取得完了";
+
+    document.getElementById("result").textContent =
+      "GAS取得時間: " +
+      ((gasEnd - start) / 1000).toFixed(2) +
+      " 秒\n\n" +
+      "名前: " + data.name +
+      "\n" +
+      "写真URL: " + (data.photoUrl ? "取得あり" : "なし") +
+      "\n" +
+      "出席URL: " + (data.attendanceUrl ? "取得あり" : "なし") +
+      "\n" +
+      "課題URL: " + (data.gradeUrl ? "取得あり" : "なし");
+
+  };
+
+  document.body.appendChild(script);
+
+}
+
+</script>
+
+</body>
+</html>
